@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SleepTimer"
         mc:Ignorable="d"
+        FocusManager.FocusedElement="{Binding ElementName=countdown}"
         Title="SleepTimer" Height="133.03" Width="345.896">
     <Grid>
         <StackPanel>
@@ -17,7 +18,7 @@
                 <Style BasedOn="{StaticResource StackPanelPadding}" TargetType="TextBlock"/>
             </StackPanel.Resources>
             <TextBlock Text="Run after"/>
-            <TextBox x:Name="countdown" Text="{Binding Path=TimeLeft, Mode=TwoWay}"/>
+            <TextBox x:Name="countdown" Text="{Binding Path=TimeLeft, Mode=TwoWay}" KeyDown="OnKeyDownHandler" />
             <Button Content="{Binding Path=ActionName}" Click="Run"/>
         </StackPanel>
     </Grid>

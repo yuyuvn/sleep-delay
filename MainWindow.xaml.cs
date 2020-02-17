@@ -31,5 +31,13 @@ namespace SleepTimer
             ((Timer)DataContext).Toogle();
             WindowState = WindowState.Minimized;
         }
+
+        public void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                this.Run(sender, e);
+            }
+        }
     }
 }
