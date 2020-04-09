@@ -18,7 +18,7 @@
                 <Style BasedOn="{StaticResource StackPanelPadding}" TargetType="TextBlock"/>
             </StackPanel.Resources>
             <TextBlock Text="Run after"/>
-            <TextBox x:Name="countdown" Text="{Binding Path=TimeLeft, Mode=TwoWay}" KeyDown="OnKeyDownHandler" />
+            <TextBox x:Name="countdown" Text="{Binding Path=TimeLeft, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyUp="OnKeyDownHandler" />
             <Button Content="{Binding Path=ActionName}" Click="Run"/>
         </StackPanel>
     </Grid>
