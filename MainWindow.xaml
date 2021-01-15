@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:SleepTimer"
         mc:Ignorable="d"
         FocusManager.FocusedElement="{Binding ElementName=countdown}"
-        Title="SleepTimer" Height="133.03" Width="345.896">
+        WindowStyle="None" ResizeMode="NoResize" MouseLeftButtonDown="WindowMouseLeftButtonDown"
+        Title="SleepTimer" Height="180.125" Width="345.896" Background="#FF292222" Foreground="White">
     <Grid>
-        <StackPanel>
+        <StackPanel Margin="5,10,5,10">
             <StackPanel.Resources>
                 <Style x:Key="StackPanelPadding" TargetType="FrameworkElement">
                     <Setter Property="Margin" Value="10,5,10,5"/>
@@ -17,9 +18,37 @@
                 <Style BasedOn="{StaticResource StackPanelPadding}" TargetType="TextBox"/>
                 <Style BasedOn="{StaticResource StackPanelPadding}" TargetType="TextBlock"/>
             </StackPanel.Resources>
-            <TextBlock Text="Run after"/>
-            <TextBox x:Name="countdown" Text="{Binding Path=TimeLeft, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyUp="OnKeyDownHandler" />
-            <Button Content="{Binding Path=ActionName}" Click="Run"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                    <ColumnDefinition Width="167*"></ColumnDefinition>
+                    <ColumnDefinition Width="69*" ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Run after" VerticalAlignment="Center" FontSize="20" Height="28" Margin="10,6" />
+                <TextBox x:Name="countdown" VerticalAlignment="Center" Text="{Binding Path=TimeLeft, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyUp="OnKeyDownHandler" Background="#FF555555" Foreground="White" Height="30" Grid.Column="1" FontSize="20" />
+                <Button Content="Reset" Click="Reset" Background="#FF00356A" Foreground="White" BorderBrush="#FF00356A" Grid.Column="2" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Content="+1" Click="Plus1Minutes" Height="30" Background="#FF00356A" Foreground="White" BorderBrush="#FF00356A" Grid.Column="0" />
+                <Button Content="+5" Click="Plus5Minutes" Height="30" Background="#FF00356A" Foreground="White" BorderBrush="#FF00356A" Grid.Column="1" />
+                <Button Content="+10" Click="Plus10Minutes" Height="30" Background="#FF00356A" Foreground="White" BorderBrush="#FF00356A" Grid.Column="2" />
+                <Button Content="-1" Click="Minute1Minutes" Height="30" Background="#FF00356A" Foreground="White" BorderBrush="#FF00356A" Grid.Column="0" Grid.Row="1" />
+                <Button Content="-5" Click="Minute5Minutes" Height="30" Background="#FF00356A" Foreground="White" BorderBrush="#FF00356A" Grid.Column="1" Grid.Row="1" />
+                <Button Content="-10" Click="Minute10Minutes" Height="30" Background="#FF00356A" Foreground="White" BorderBrush="#FF00356A" Grid.Column="2" Grid.Row="1" />
+            </Grid>
+            <Button Content="{Binding Path=ActionName}" Click="Run" Height="30" Background="#FF00356A" Foreground="White" BorderBrush="#FF00356A" />
         </StackPanel>
     </Grid>
 </Window>

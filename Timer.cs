@@ -17,6 +17,7 @@ namespace SleepTimer
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private uint _defaultDelay;
         public string TimeLeft { get; set; }
         public string ActionName
         {
@@ -30,7 +31,22 @@ namespace SleepTimer
 
         public Timer(uint defaultDelay)
         {
+            _defaultDelay = defaultDelay;
             TimeLeft = defaultDelay.ToString();
+        }
+        public void Reset()
+        {
+            TimeLeft = _defaultDelay.ToString();
+            OnPropertyChanged("TimeLeft");
+        }
+
+        public void Plus(int minutes)
+        {
+            int time = Int32.Parse(TimeLeft) + minutes;
+            if (time < 0) time = 0;
+
+            TimeLeft = time.ToString();
+            OnPropertyChanged("TimeLeft");
         }
 
         public void Toogle()
@@ -68,5 +84,9 @@ namespace SleepTimer
             System.Windows.Application.Current.Shutdown();
         }
 
+        protected void OnPropertyChanged(string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }
